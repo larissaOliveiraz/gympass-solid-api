@@ -1,16 +1,21 @@
-import { expect, it, describe } from "vitest";
+import { expect, it, describe, beforeEach } from "vitest";
 import { RegisterService } from "./register-service";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
 import { AuthenticationService } from "./authentication-service";
 import { hash } from "bcryptjs";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error";
 
-describe("Authentication Service", () => {
-   it("should be able to authenticate", async () => {
-      const inMemoryUsersRepository = new InMemoryUsersRepository();
-      const sut = new AuthenticationService(inMemoryUsersRepository);
+let usersRepository: InMemoryUsersRepository;
+let sut: AuthenticationService;
 
-      await inMemoryUsersRepository.create({
+describe("Authentication Service", () => {
+   beforeEach(() => {
+      usersRepository = new InMemoryUsersRepository();
+      sut = new AuthenticationService(usersRepository);
+   });
+
+   it("should be able to authenticate", async () => {
+      await usersRepository.create({
          name: "John",
          email: "john@example.com",
          password_hash: await hash("123456", 6),
@@ -25,9 +30,6 @@ describe("Authentication Service", () => {
    });
 
    it("should not be able to authenticate with wrong email", async () => {
-      const inMemoryUsersRepository = new InMemoryUsersRepository();
-      const sut = new AuthenticationService(inMemoryUsersRepository);
-
       await expect(() =>
          sut.execute({
             email: "john@example.com",
@@ -37,10 +39,7 @@ describe("Authentication Service", () => {
    });
 
    it("should not be able to authenticate with wrong password", async () => {
-      const inMemoryUsersRepository = new InMemoryUsersRepository();
-      const sut = new AuthenticationService(inMemoryUsersRepository);
-
-      await inMemoryUsersRepository.create({
+      await usersRepository.create({
          name: "John",
          email: "john@example.com",
          password_hash: await hash("123456", 6),

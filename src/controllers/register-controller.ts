@@ -1,8 +1,8 @@
+import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository";
+import { UserAlreadyExistsError } from "@/services/errors/user-already-exists";
+import { RegisterService } from "@/services/register-service";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { hash } from "bcryptjs";
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
-import { registerService } from "@/services/register-service";
 
 export async function registerUser(
    request: FastifyRequest,
@@ -17,9 +17,16 @@ export async function registerUser(
    const { name, email, password } = registerBodySchema.parse(request.body);
 
    try {
-      await registerService({ name, email, password });
+      const userRepository = new PrismaUsersRepository();
+      const registerService = new RegisterService(userRepository);
+
+      await registerService.execute({ name, email, password });
    } catch (error) {
-      return reply.status(409).send();
+      if (error instanceof UserAlreadyExistsError) {
+         return reply.status(409).send({ message: error.message });
+      }
+
+      return reply.status(500).send(); //TODO: fix error
    }
 
    return reply.status(201).send();

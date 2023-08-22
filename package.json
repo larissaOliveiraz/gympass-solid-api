@@ -7,7 +7,10 @@
       "dev": "tsx watch src/server.ts",
       "start": "node build/server.js",
       "build": "tsup src --out-dir build",
-      "migrate": "npx prisma migrate dev"
+      "migrate": "npx prisma migrate dev",
+      "test": "vitest run",
+      "test-watch": "vitest",
+      "test-coverage": "vitest run --coverage"
    },
    "keywords": [],
    "author": "",
@@ -15,10 +18,13 @@
    "devDependencies": {
       "@types/bcryptjs": "2.4.2",
       "@types/node": "^20.5.0",
+      "@vitest/coverage-v8": "0.34.2",
       "prisma": "5.1.1",
       "tsup": "^7.2.0",
       "tsx": "^3.12.7",
-      "typescript": "^5.1.6"
+      "typescript": "^5.1.6",
+      "vite-tsconfig-paths": "4.2.0",
+      "vitest": "0.34.2"
    },
    "dependencies": {
       "@prisma/client": "5.1.1",

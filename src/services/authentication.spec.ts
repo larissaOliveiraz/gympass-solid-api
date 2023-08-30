@@ -1,7 +1,7 @@
 import { expect, it, describe, beforeEach } from "vitest";
-import { RegisterService } from "./register-service";
+import { RegisterService } from "./register";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
-import { AuthenticationService } from "./authentication-service";
+import { AuthenticationService } from "./authentication";
 import { hash } from "bcryptjs";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error";
 

@@ -1,6 +1,6 @@
 import { CheckInsRepository } from "@/repositories/check-ins-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { GetUserMetricsService } from "./get-user-metrics-service";
+import { GetUserMetricsService } from "./get-user-metrics";
 import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins-repository";
 
 let checkInsRepository: CheckInsRepository;

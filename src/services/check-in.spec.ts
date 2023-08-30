@@ -1,6 +1,6 @@
 import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins-repository";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { CheckInService } from "./check-in-service";
+import { CheckInService } from "./check-in";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository";
 import { Decimal } from "@prisma/client/runtime/library";
 import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins-error";

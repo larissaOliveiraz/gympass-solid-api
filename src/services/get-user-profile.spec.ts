@@ -1,6 +1,6 @@
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { GetUserProfileService } from "./get-user-profile-service";
+import { GetUserProfileService } from "./get-user-profile";
 import { hash } from "bcryptjs";
 import { ResourceNotFoundError } from "./errors/resource-not-found-error";
 

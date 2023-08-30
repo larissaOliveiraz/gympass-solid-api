@@ -1,5 +1,5 @@
 import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository";
-import { AuthenticationService } from "@/services/authentication-service";
+import { AuthenticationService } from "@/services/authentication";
 import { InvalidCredentialsError } from "@/services/errors/invalid-credentials-error";
 import { makeAuthenticationService } from "@/services/factories/make-authentication-service";
 import { FastifyReply, FastifyRequest } from "fastify";

@@ -3,7 +3,7 @@ import { AuthenticationService } from "../authentication";
 
 export function makeAuthenticationService() {
    const usersRepository = new PrismaUsersRepository();
-   const authenticationService = new AuthenticationService(usersRepository);
+   const service = new AuthenticationService(usersRepository);
 
-   return authenticationService;
+   return service;
 }

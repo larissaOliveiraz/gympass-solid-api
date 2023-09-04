@@ -16,5 +16,13 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 
    const service = makeCreateGymService();
 
-   service.execute({ title, description, phone, latitude, longitude });
+   service.execute({
+      title,
+      description,
+      phone,
+      latitude,
+      longitude,
+   });
+
+   return reply.status(201).send();
 }

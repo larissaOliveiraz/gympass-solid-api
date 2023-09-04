@@ -4,7 +4,7 @@ import { search } from "./search";
 import { nearby } from "./nearby";
 import { create } from "./create";
 
-export function gymRoutes(app: FastifyInstance) {
+export async function gymRoutes(app: FastifyInstance) {
    app.addHook("onRequest", verifyJWT);
 
    app.get("/gyms/search", search);

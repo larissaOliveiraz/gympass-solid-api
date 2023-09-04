@@ -4,6 +4,7 @@ import { env } from "./env";
 import { fastifyJwt } from "@fastify/jwt";
 import { gymRoutes } from "./http/controllers/gyms/routes";
 import { userRoutes } from "./http/controllers/users/routes";
+import { checkInRoutes } from "./http/controllers/check-ins/routes";
 
 export const app = fastify();
 
@@ -13,6 +14,7 @@ app.register(fastifyJwt, {
 
 app.register(userRoutes);
 app.register(gymRoutes);
+app.register(checkInRoutes);
 
 app.setErrorHandler((error, request, reply) => {
    if (error instanceof ZodError) {

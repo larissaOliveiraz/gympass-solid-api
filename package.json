@@ -12,6 +12,7 @@
       "migrate": "npx prisma migrate dev",
       "pretest:e2e": "run-s test:create-env test:install-env",
       "test:e2e": "vitest --dir src/http",
+      "test-e2e": "vitest --dir src/http",
       "test": "vitest run --dir src/services",
       "test:watch": "vitest --dir src/services",
       "test:coverage": "vitest run --coverage",
